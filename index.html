@@ -11,6 +11,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <script>
+      (function() {
+        var r = sessionStorage.getItem('spa_redirect');
+        if (r) {
+          sessionStorage.removeItem('spa_redirect');
+          var p = r.replace(/^\/DataNasabah/, '') || '/';
+          window.history.replaceState(null, '', '/DataNasabah' + p);
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

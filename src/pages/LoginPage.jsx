@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { useAuth } from '@/contexts/AuthContext'
 import {
   Building2,
@@ -197,7 +197,16 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <p className="mt-6 text-center text-xs text-gray-400">
+            <div className="mt-4 text-center">
+              <Link
+                to="/forgot-password"
+                className="text-sm text-brand-primary hover:text-brand-secondary transition-colors font-medium"
+              >
+                Lupa password?
+              </Link>
+            </div>
+
+            <p className="mt-4 text-center text-xs text-gray-400">
               Akses dibatasi sesuai unit kerja Anda
             </p>
           </div>

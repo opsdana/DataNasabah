@@ -73,6 +73,30 @@ export function AuthProvider({ children }) {
     return data
   }, [])
 
+  // Lupa password — kirim email reset
+  const resetPassword = useCallback(async (email) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/DataNasabah/reset-password`,
+    })
+
+    if (error) {
+      throw new Error(error.message)
+    }
+  }, [])
+
+  // Set password baru setelah klik link reset
+  const updatePassword = useCallback(async (newPassword) => {
+    const { data, error } = await supabase.auth.updateUser({
+      password: newPassword,
+    })
+
+    if (error) {
+      throw new Error(error.message)
+    }
+
+    return data
+  }, [])
+
   // Logout
   const logout = useCallback(async () => {
     if (user) {
@@ -134,6 +158,8 @@ export function AuthProvider({ children }) {
     loading,
     login,
     logout,
+    resetPassword,
+    updatePassword,
     catatLog,
     getToken,
     isAuthenticated: !!user && !!profile,
